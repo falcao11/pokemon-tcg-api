@@ -1,0 +1,22 @@
+name: 'pokemon-tcg'
+services:
+  db:
+    build:
+      context: .
+      dockerfile: DockerFile.bd
+    volumes:
+      - database:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=pokemon-tcg
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '25432:5432'
+    healthcheck:
+      test: ['CMD', 'pg_isready', '-U', 'postgres', '-d', 'postgres']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+volumes:
+  database:
+    driver: local

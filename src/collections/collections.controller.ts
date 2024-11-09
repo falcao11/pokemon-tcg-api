@@ -1,0 +1,46 @@
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { CollectionsService } from './collections.service';
+import { CreateCollectionDto } from './dto/create-collection.dto';
+import { UpdateCollectionDto } from './dto/update-collection.dto';
+import { ApiProperty, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { CollectionEntity } from './entities/collection.entity';
+
+@ApiTags("Collections")
+@Controller('collections')
+export class CollectionsController {
+  constructor(private readonly collectionsService: CollectionsService) {}
+
+  @ApiProperty()
+  @Post()
+  @ApiResponse({ status: 201, type: CreateCollectionDto })
+  async create(@Body() createCollectionDto: CreateCollectionDto) : Promise<CollectionEntity> {
+    return new CollectionEntity(await this.collectionsService.create(createCollectionDto));
+  }
+
+  @ApiProperty()
+  @Get()
+  async findAll() {
+    const collections = await this.collectionsService.findAll();
+    return collections.map(
+      (collection) => new CollectionEntity(collection)
+    );
+  }
+
+  @ApiProperty()
+  @Get(':id')
+  async findOne(@Param('id') id: string) {
+    return new CollectionEntity(await this.collectionsService.findOne(id));
+  }
+
+  @ApiProperty()
+  @Patch(':id')
+  async update(@Param('id') id: string, @Body() updateCollectionDto: UpdateCollectionDto) {
+    return await this.collectionsService.update(id, updateCollectionDto);
+  }
+
+  @ApiProperty()
+  @Delete(':id')
+  async remove(@Param('id') id: string) {
+    return await this.collectionsService.remove(id);
+  }
+}

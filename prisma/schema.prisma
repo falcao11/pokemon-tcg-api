@@ -1,0 +1,49 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  userId    String       @id @default(cuid())
+  email     String       @unique
+  password  String
+  username  String       @unique
+  colletion Collection[] @relation("user_id_collection")
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt()
+
+  @@map("users")
+}
+
+model Collection {
+  collectionId String           @id @default(cuid())
+  setId        String
+  userId       String
+  user         User?            @relation("user_id_collection", fields: [userId], references: [userId])
+  cards        CardCollection[] @relation("collection_id_card")
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt()
+
+  @@map("collections")
+}
+
+model CardCollection {
+  cardCollectionId String      @id @default(cuid())
+  cardId           String      @unique
+  collectionId     String
+  collection       Collection? @relation("collection_id_card", fields: [collectionId], references: [collectionId])
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt()
+
+  @@map("card_collections")
+}
