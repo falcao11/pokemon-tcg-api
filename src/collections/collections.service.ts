@@ -5,14 +5,14 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class CollectionsService {
-  constructor (private readonly prismaService: PrismaService) {}
+  constructor(private readonly prismaService: PrismaService) {}
 
   async create(createCollectionDto: CreateCollectionDto) {
     return await this.prismaService.collection.create({
       data: {
         setId: createCollectionDto.setId,
-        userId: createCollectionDto.userId
-      } 
+        userId: createCollectionDto.userId,
+      },
     });
   }
 
@@ -23,28 +23,27 @@ export class CollectionsService {
   async findOne(id: string) {
     return await this.prismaService.collection.findUnique({
       where: {
-        collectionId: id
-      }
+        collectionId: id,
+      },
     });
   }
 
   async update(id: string, updateCollectionDto: UpdateCollectionDto) {
     return await this.prismaService.collection.update({
       where: {
-        collectionId: id
+        collectionId: id,
       },
       data: {
         setId: updateCollectionDto.setId,
-        userId: updateCollectionDto.userId	
-      }
+      },
     });
   }
 
   async remove(id: string) {
     return await this.prismaService.collection.delete({
       where: {
-        collectionId: id
-      }
+        collectionId: id,
+      },
     });
   }
 }

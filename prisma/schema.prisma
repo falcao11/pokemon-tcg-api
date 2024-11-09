@@ -41,7 +41,7 @@ model CardCollection {
   cardCollectionId String      @id @default(cuid())
   cardId           String      @unique
   collectionId     String
-  collection       Collection? @relation("collection_id_card", fields: [collectionId], references: [collectionId])
+  collection       Collection? @relation("collection_id_card", fields: [collectionId], references: [collectionId], onDelete: Cascade)
   createdAt        DateTime    @default(now())
   updatedAt        DateTime    @updatedAt()
 
