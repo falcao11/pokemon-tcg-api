@@ -1,26 +1,26 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { Exclude } from "class-transformer";
+import { ApiProperty } from '@nestjs/swagger';
+import { Exclude } from 'class-transformer';
 
 export class UserEntity {
-    constructor (partial: Partial<UserEntity>) {
-        Object.assign(this, partial);
-    }
-    
-    @ApiProperty()
-    userId: string;
+  constructor(partial: Partial<UserEntity>) {
+    Object.assign(this, partial);
+  }
 
-    @ApiProperty()
-    username: string;
+  @ApiProperty()
+  user_id: string;
 
-    @ApiProperty()
-    email: string;
+  @ApiProperty()
+  username: string;
 
-    @Exclude()
-    password: string;
+  @ApiProperty()
+  email: string;
 
-    @ApiProperty()
-    createdAt: Date;
+  @Exclude()
+  password: string;
 
-    @ApiProperty()
-    updatedAt: Date;
+  @ApiProperty()
+  created_at: Date;
+
+  @ApiProperty()
+  updated_at: Date;
 }

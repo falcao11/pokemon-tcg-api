@@ -12,8 +12,8 @@ export class UsersService {
       data: {
         email: createUserDto.email,
         username: createUserDto.username,
-        password: createUserDto.password
-      }
+        password: createUserDto.password,
+      },
     });
   }
 
@@ -24,35 +24,35 @@ export class UsersService {
   async findOne(id: string) {
     return await this.prismaService.user.findUnique({
       where: {
-        userId: id
-      }
+        user_id: id,
+      },
     });
   }
 
   async findByEmail(email: string) {
     return await this.prismaService.user.findUnique({
       where: {
-        email: email
-      }
+        email: email,
+      },
     });
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {
     return await this.prismaService.user.update({
       where: {
-        userId: id
+        user_id: id,
       },
       data: {
         username: updateUserDto.username,
-      }
+      },
     });
   }
 
   async remove(id: string) {
     return await this.prismaService.user.delete({
       where: {
-        userId: id
-      }
+        user_id: id,
+      },
     });
   }
 }

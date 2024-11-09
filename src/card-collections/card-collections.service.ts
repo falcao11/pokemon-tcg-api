@@ -5,15 +5,15 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class CardCollectionsService {
-  constructor(private readonly prismaService :PrismaService) {}
+  constructor(private readonly prismaService: PrismaService) {}
 
   async create(createCardCollectionDto: CreateCardCollectionDto) {
     return await this.prismaService.cardCollection.create({
       data: {
-        collectionId: createCardCollectionDto.collectionId,
-        cardId: createCardCollectionDto.cardId
-      }  
-    }) ;
+        collection_id: createCardCollectionDto.collection_id,
+        card_id: createCardCollectionDto.card_id,
+      },
+    });
   }
 
   async findAll() {
@@ -23,28 +23,28 @@ export class CardCollectionsService {
   async findOne(id: string) {
     return await this.prismaService.cardCollection.findUnique({
       where: {
-        cardCollectionId: id
-      }
+        card_collection_id: id,
+      },
     });
   }
 
   async update(id: string, updateCardCollectionDto: UpdateCardCollectionDto) {
     return await this.prismaService.cardCollection.update({
       where: {
-        cardCollectionId: id
+        card_collection_id: id,
       },
       data: {
-        collectionId: updateCardCollectionDto.collectionId,
-        cardId: updateCardCollectionDto.cardId
-      }
+        collection_id: updateCardCollectionDto.collection_id,
+        card_id: updateCardCollectionDto.card_id,
+      },
     });
   }
 
   async remove(id: string) {
     return await this.prismaService.cardCollection.delete({
       where: {
-        cardCollectionId: id
-      }
+        card_collection_id: id,
+      },
     });
   }
 }

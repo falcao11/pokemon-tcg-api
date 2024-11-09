@@ -1,17 +1,18 @@
-import { Injectable } from '@nestjs/common';
+import { Body, Get, Injectable } from '@nestjs/common';
 import { CreateCollectionDto } from './dto/create-collection.dto';
 import { UpdateCollectionDto } from './dto/update-collection.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { GetCurrentUser } from 'src/auth/decorators/get-current-user.decorator';
 
 @Injectable()
 export class CollectionsService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async create(createCollectionDto: CreateCollectionDto) {
+  async create(createCollectionDto: CreateCollectionDto, userId: string) {
     return await this.prismaService.collection.create({
       data: {
-        setId: createCollectionDto.setId,
-        userId: createCollectionDto.userId,
+        set_id: createCollectionDto.set_id,
+        user_id: userId,
       },
     });
   }
@@ -23,7 +24,7 @@ export class CollectionsService {
   async findOne(id: string) {
     return await this.prismaService.collection.findUnique({
       where: {
-        collectionId: id,
+        collection_id: id,
       },
     });
   }
@@ -31,10 +32,10 @@ export class CollectionsService {
   async update(id: string, updateCollectionDto: UpdateCollectionDto) {
     return await this.prismaService.collection.update({
       where: {
-        collectionId: id,
+        collection_id: id,
       },
       data: {
-        setId: updateCollectionDto.setId,
+        set_id: updateCollectionDto.set_id,
       },
     });
   }
@@ -42,7 +43,7 @@ export class CollectionsService {
   async remove(id: string) {
     return await this.prismaService.collection.delete({
       where: {
-        collectionId: id,
+        collection_id: id,
       },
     });
   }

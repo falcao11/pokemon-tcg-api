@@ -1,22 +1,22 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger';
 
 export class CollectionEntity {
-    constructor (partial: Partial<CollectionEntity>) {
-        Object.assign(this, partial);
-    }
+  constructor(partial: Partial<CollectionEntity>) {
+    Object.assign(this, partial);
+  }
 
-    @ApiProperty()
-    collectionId: string;
+  @ApiProperty()
+  collection_id: string;
 
-    @ApiProperty()
-    setId: string;
+  @ApiProperty()
+  set_id: string;
 
-    @ApiProperty()
-    userId: string;
+  @ApiProperty()
+  user_id: string;
 
-    @ApiProperty()
-    createdAt: Date;
+  @ApiProperty()
+  created_at: Date;
 
-    @ApiProperty()
-    updatedAt: Date;
+  @ApiProperty()
+  updated_at: Date;
 }

@@ -1,12 +1,12 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty } from "class-validator";
+import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty } from 'class-validator';
 
 export class CreateCardCollectionDto {
-    @ApiProperty()
-    @IsNotEmpty()
-    collectionId: string;
+  @ApiProperty()
+  @IsNotEmpty()
+  collection_id: string;
 
-    @ApiProperty()
-    @IsNotEmpty()
-    cardId: string;
+  @ApiProperty()
+  @IsNotEmpty()
+  card_id: string;
 }

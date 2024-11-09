@@ -14,36 +14,36 @@ datasource db {
 }
 
 model User {
-  userId    String       @id @default(cuid())
-  email     String       @unique
-  password  String
-  username  String       @unique
-  colletion Collection[] @relation("user_id_collection")
-  createdAt DateTime     @default(now())
-  updatedAt DateTime     @updatedAt()
+  user_id    String       @id @default(cuid())
+  email      String       @unique
+  password   String
+  username   String       @unique
+  colletion  Collection[] @relation("user_id_collection")
+  created_at DateTime     @default(now())
+  updated_at DateTime     @updatedAt()
 
   @@map("users")
 }
 
 model Collection {
-  collectionId String           @id @default(cuid())
-  setId        String
-  userId       String
-  user         User?            @relation("user_id_collection", fields: [userId], references: [userId])
-  cards        CardCollection[] @relation("collection_id_card")
-  createdAt    DateTime         @default(now())
-  updatedAt    DateTime         @updatedAt()
+  collection_id String           @id @default(cuid())
+  set_id        String
+  user_id       String
+  user          User?            @relation("user_id_collection", fields: [user_id], references: [user_id])
+  cards         CardCollection[] @relation("collection_id_card")
+  created_at    DateTime         @default(now())
+  updated_at    DateTime         @updatedAt()
 
   @@map("collections")
 }
 
 model CardCollection {
-  cardCollectionId String      @id @default(cuid())
-  cardId           String      @unique
-  collectionId     String
-  collection       Collection? @relation("collection_id_card", fields: [collectionId], references: [collectionId], onDelete: Cascade)
-  createdAt        DateTime    @default(now())
-  updatedAt        DateTime    @updatedAt()
+  card_collection_id String      @id @default(cuid())
+  card_id            String      @unique
+  collection_id      String
+  collection         Collection? @relation("collection_id_card", fields: [collection_id], references: [collection_id], onDelete: Cascade)
+  created_at         DateTime    @default(now())
+  updated_at         DateTime    @updatedAt()
 
   @@map("card_collections")
 }

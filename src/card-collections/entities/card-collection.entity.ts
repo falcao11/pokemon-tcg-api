@@ -1,22 +1,22 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger';
 
 export class CardCollectionEntity {
-    constructor (partial: Partial<CardCollectionEntity>) {
-        Object.assign(this, partial);
-    }
+  constructor(partial: Partial<CardCollectionEntity>) {
+    Object.assign(this, partial);
+  }
 
-    @ApiProperty()
-    cardCollectionId: string;
+  @ApiProperty()
+  card_collection_id: string;
 
-    @ApiProperty()
-    cardId: string;
+  @ApiProperty()
+  card_id: string;
 
-    @ApiProperty()
-    collectionId: string;
+  @ApiProperty()
+  collection_id: string;
 
-    @ApiProperty()
-    createdAt: Date;
+  @ApiProperty()
+  created_at: Date;
 
-    @ApiProperty()
-    updatedAt: Date;
+  @ApiProperty()
+  updated_at: Date;
 }
