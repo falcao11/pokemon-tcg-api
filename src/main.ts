@@ -10,6 +10,8 @@ import { PrismaClientExceptionFilter } from './error/prisma-exceptions.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.enableCors();
+
   app.setGlobalPrefix('api/v1');
 
   const { httpAdapter } = app.get(HttpAdapterHost);
