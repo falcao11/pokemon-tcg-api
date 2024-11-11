@@ -10,8 +10,6 @@ export class CardCollectionsService {
     collectionId: string,
     createCardCollectionDto: CreateCardCollectionDto,
   ) {
-    console.log('Cards: ', createCardCollectionDto.cards);
-    console.log('Collection ID: ', collectionId);
     return await this.prismaService.collection.update({
       where: {
         collection_id: collectionId,
@@ -52,10 +50,20 @@ export class CardCollectionsService {
   //   });
   // }
 
-  async remove(id: string) {
-    return await this.prismaService.cardCollection.delete({
+  // async remove(id: string) {
+  //   return await this.prismaService.cardCollection.delete({
+  //     where: {
+  //       card_collection_id: id,
+  //     },
+  //   });
+  // }
+
+  async removeMany(id: string[]) {
+    return await this.prismaService.cardCollection.deleteMany({
       where: {
-        card_collection_id: id,
+        card_collection_id: {
+          in: id,
+        },
       },
     });
   }

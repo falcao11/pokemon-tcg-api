@@ -46,8 +46,13 @@ export class CardCollectionsController {
   //   );
   // }
 
-  @Delete(':id')
-  async remove(@Param('id') id: string) {
-    return await this.cardCollectionsService.remove(id);
+  // @Delete(':id')
+  // async remove(@Param('id') id: string) {
+  //   return await this.cardCollectionsService.remove(id);
+  // }
+
+  @Delete()
+  async removeMany(@Body() id: string[]) {
+    return await this.cardCollectionsService.removeMany(id);
   }
 }
