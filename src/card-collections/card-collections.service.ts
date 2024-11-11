@@ -10,33 +10,35 @@ export class CardCollectionsService {
     collectionId: string,
     createCardCollectionDto: CreateCardCollectionDto,
   ) {
-    return await this.prismaService.collection.update({
-      where: {
-        collection_id: collectionId,
-      },
-      data: {
-        cards: {
-          create: [
-            ...createCardCollectionDto.cards.map((cardId) => ({
-              card_id: cardId,
-            })),
-          ],
+    return await this.prismaService.$transaction(async (prisma) => {
+      // Delete all existing cards in the collection
+      await prisma.cardCollection.deleteMany({
+        where: {
+          collection_id: collectionId,
         },
-      },
+      });
+
+      // Insert the new selection of cards
+      return await prisma.cardCollection.createMany({
+        data: createCardCollectionDto.cards.map((cardId) => ({
+          collection_id: collectionId,
+          card_id: cardId,
+        })),
+      });
     });
   }
 
-  async findAll() {
-    return await this.prismaService.cardCollection.findMany();
-  }
+  // async findAll() {
+  //   return await this.prismaService.cardCollection.findMany();
+  // }
 
-  async findOne(id: string) {
-    return await this.prismaService.cardCollection.findUnique({
-      where: {
-        card_collection_id: id,
-      },
-    });
-  }
+  // async findOne(id: string) {
+  //   return await this.prismaService.cardCollection.findUnique({
+  //     where: {
+  //       card_collection_id: id,
+  //     },
+  //   });
+  // }
 
   // async update( ,id: string, updateCardCollectionDto: UpdateCardCollectionDto) {
   //   return await this.prismaService.cardCollection.update({
@@ -58,13 +60,13 @@ export class CardCollectionsService {
   //   });
   // }
 
-  async removeMany(id: string[]) {
-    return await this.prismaService.cardCollection.deleteMany({
-      where: {
-        card_collection_id: {
-          in: id,
-        },
-      },
-    });
-  }
+  // async removeMany(id: string[]) {
+  //   return await this.prismaService.cardCollection.deleteMany({
+  //     where: {
+  //       card_collection_id: {
+  //         in: id,
+  //       },
+  //     },
+  //   });
+  // }
 }

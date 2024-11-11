@@ -1,8 +1,7 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Param, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CardCollectionsService } from './card-collections.service';
 import { CreateCardCollectionDto } from './dto/create-card-collection.dto';
-import { CardCollectionEntity } from './entities/card-collection.entity';
 
 @ApiTags('Collections')
 @Controller('collections/:id/cards')
@@ -22,18 +21,18 @@ export class CardCollectionsController {
     );
   }
 
-  @Get()
-  async findAll() {
-    const cards = await this.cardCollectionsService.findAll();
-    return cards.map((card) => new CardCollectionEntity(card));
-  }
+  // @Get()
+  // async findAll() {
+  //   const cards = await this.cardCollectionsService.findAll();
+  //   return cards.map((card) => new CardCollectionEntity(card));
+  // }
 
-  @Get(':id')
-  async findOne(@Param('id') id: string) {
-    return new CardCollectionEntity(
-      await this.cardCollectionsService.findOne(id),
-    );
-  }
+  // @Get(':id')
+  // async findOne(@Param('id') id: string) {
+  //   return new CardCollectionEntity(
+  //     await this.cardCollectionsService.findOne(id),
+  //   );
+  // }
 
   // @Patch(':id')
   // async update(
@@ -51,8 +50,8 @@ export class CardCollectionsController {
   //   return await this.cardCollectionsService.remove(id);
   // }
 
-  @Delete()
-  async removeMany(@Body() id: string[]) {
-    return await this.cardCollectionsService.removeMany(id);
-  }
+  // @Delete()
+  // async removeMany(@Body() id: string[]) {
+  //   return await this.cardCollectionsService.removeMany(id);
+  // }
 }
