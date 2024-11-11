@@ -1,18 +1,18 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
 } from '@nestjs/common';
+import { ApiProperty, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { GetCurrentUser } from 'src/auth/decorators/get-current-user.decorator';
 import { CollectionsService } from './collections.service';
 import { CreateCollectionDto } from './dto/create-collection.dto';
 import { UpdateCollectionDto } from './dto/update-collection.dto';
-import { ApiProperty, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CollectionEntity } from './entities/collection.entity';
-import { GetCurrentUser } from 'src/auth/decorators/get-current-user.decorator';
 
 @ApiTags('Collections')
 @Controller('collections')
