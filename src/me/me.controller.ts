@@ -1,9 +1,9 @@
-import { Controller, Get, Body, Patch, UseGuards } from '@nestjs/common';
-import { MeService } from './me.service';
+import { Body, Controller, Get, Patch, UseGuards } from '@nestjs/common';
 import { ApiProperty, ApiTags } from '@nestjs/swagger';
-import { UpdateUserDto } from 'src/users/dto/update-user.dto';
-import { GetCurrentUser } from 'src/auth/decorators/get-current-user.decorator';
 import { AuthGuard } from 'src/auth/auth.guard';
+import { GetCurrentUser } from 'src/auth/decorators/get-current-user.decorator';
+import { UpdateUserDto } from 'src/users/dto/update-user.dto';
+import { MeService } from './me.service';
 
 @ApiTags('Me')
 @Controller('me')

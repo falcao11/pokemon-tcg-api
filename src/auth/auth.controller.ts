@@ -6,7 +6,7 @@ import { AuthService } from './auth.service';
 import { Public } from './decorators/public-strategy';
 import { LoginUserDto } from './dto/login-user.dto';
 
-@Controller('auth')
+@Controller('')
 @ApiTags('Auth')
 export class AuthController {
   constructor(private authService: AuthService) {}

@@ -1,8 +1,7 @@
-import { Body, Get, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateCollectionDto } from './dto/create-collection.dto';
 import { UpdateCollectionDto } from './dto/update-collection.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { GetCurrentUser } from 'src/auth/decorators/get-current-user.decorator';
 
 @Injectable()
 export class CollectionsService {

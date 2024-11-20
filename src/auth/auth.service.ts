@@ -1,4 +1,8 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
@@ -28,7 +32,19 @@ export class AuthService {
 
   async signUp(payload: CreateUserDto) {
     payload.password = await bcrypt.hash(payload.password, 10);
-    const user = await this.usersService.create(payload);
-    return user;
+    try {
+      const user = await this.usersService.create(payload);
+      return user;
+    } catch (error) {
+      if (error.code === 'P2002') {
+        const target = error.meta.target;
+        if (target.includes('username')) {
+          throw new ConflictException('Username already exists');
+        } else if (target.includes('email')) {
+          throw new ConflictException('Email already exists');
+        }
+      }
+      throw error;
+    }
   }
 }
