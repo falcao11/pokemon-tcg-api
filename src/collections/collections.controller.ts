@@ -34,9 +34,10 @@ export class CollectionsController {
 
   @ApiProperty()
   @Get()
-  async findAll() {
-    const collections = await this.collectionsService.findAll();
-    return collections.map((collection) => new CollectionEntity(collection));
+  async findAll(@GetCurrentUser() userId) {
+    // const collections = await this.collectionsService.findAll(userId.sub);
+    // return collections.map((collection) => new CollectionEntity(collection));
+    return this.collectionsService.findAll(userId.sub);
   }
 
   @ApiProperty()

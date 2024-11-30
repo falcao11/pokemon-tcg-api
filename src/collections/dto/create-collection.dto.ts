@@ -4,5 +4,9 @@ import { IsNotEmpty } from 'class-validator';
 export class CreateCollectionDto {
   @ApiProperty()
   @IsNotEmpty()
+  name: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
   set_id: string;
 }

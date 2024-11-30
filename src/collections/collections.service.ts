@@ -10,14 +10,21 @@ export class CollectionsService {
   async create(createCollectionDto: CreateCollectionDto, userId: string) {
     return await this.prismaService.collection.create({
       data: {
+        name: createCollectionDto.name,
         set_id: createCollectionDto.set_id,
         user_id: userId,
       },
     });
   }
 
-  async findAll() {
-    return await this.prismaService.collection.findMany();
+  async findAll(userId: string) {
+    return {
+      collections: await this.prismaService.collection.findMany({
+        where: {
+          user_id: userId,
+        },
+      }),
+    };
   }
 
   async findOne(id: string) {
