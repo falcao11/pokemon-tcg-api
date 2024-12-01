@@ -75,20 +75,44 @@ Ensure you have the following installed:
    POSTGRES_PASSWORD="{PASSWORD}"
    ```
 
-2. Start the database:
+2. Apply migrations:
+
+   ```bash
+   npx prisma generate
+   ```
+
+3. Start the database:
 
    ```bash
    docker-compose up -d
    ```
 
-3. Run the application:
+4. Run the application:
 
    ```bash
    npm run start:dev
-
    # or
 
    yarn start:dev
    ```
 
-4. Access the API at `http://localhost:3000`.
+5. Connect your PGAdmin
+
+   1. Register a new server
+   2. In general, set the name for the server
+   3. In Connection set "localhost" to "Hostname/address"
+   4. Port, Username and Password the same that you put in .env
+
+   Now you are able to see the database in your PostgreSQL
+
+## API Documentation
+
+Swagger is available for exploring and testing the API endpoints.
+
+- URL: `http://localhost:3333/api/`
+
+<img src=".github/swagger.png"></img>
+
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for details.
