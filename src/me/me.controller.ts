@@ -14,7 +14,6 @@ export class MeController {
   @UseGuards(AuthGuard)
   @Get('/')
   async getProfile(@GetCurrentUser() userId) {
-    console.log('Ola id: ' + userId.sub);
     return await this.meService.getProfile(userId.sub);
   }
 

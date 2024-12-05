@@ -26,7 +26,6 @@ export class CollectionsController {
     @Body() createCollectionDto: CreateCollectionDto,
     @GetCurrentUser() userId,
   ): Promise<CollectionEntity> {
-    console.log(userId.sub);
     return new CollectionEntity(
       await this.collectionsService.create(createCollectionDto, userId.sub),
     );

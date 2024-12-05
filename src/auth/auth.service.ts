@@ -18,11 +18,9 @@ export class AuthService {
   async signIn(email: string, pass: string) {
     const user = await this.usersService.findByEmail(email);
     if (!user) {
-      console.log();
       throw new UnauthorizedException('Email does not exist');
     } else {
       if ((await bcrypt.compare(pass, user?.password)) === false) {
-        console.log('Password is incorrect');
         throw new UnauthorizedException('Password is incorrect');
       }
       const payload = {

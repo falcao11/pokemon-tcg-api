@@ -35,7 +35,6 @@ export class UsersService {
         email: email,
       },
     });
-    console.log('User found: ', userEmail);
     return userEmail;
   }
 
