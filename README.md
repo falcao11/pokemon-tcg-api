@@ -46,7 +46,7 @@ Ensure you have the following installed:
 
 - [Node.js](https://nodejs.org/) (>= 16.x)
 - [npm](https://www.npmjs.com/) (or [yarn](https://yarnpkg.com/))
-- [Docker](https://www.docker.com/) (for running PostgreSQL)
+- [Docker](https://www.docker.com/) (for running PostgreSQL on container)
 
 ### Installation
 
