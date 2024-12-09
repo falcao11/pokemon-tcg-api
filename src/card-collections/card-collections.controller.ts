@@ -1,4 +1,4 @@
-import { Body, Controller, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CardCollectionsService } from './card-collections.service';
 import { CreateCardCollectionDto } from './dto/create-card-collection.dto';
@@ -21,11 +21,11 @@ export class CardCollectionsController {
     );
   }
 
-  // @Get()
-  // async findAll() {
-  //   const cards = await this.cardCollectionsService.findAll();
-  //   return cards.map((card) => new CardCollectionEntity(card));
-  // }
+  @Get()
+  async findAllCards(@Param('id') id: string) {
+    return await this.cardCollectionsService.findAllCards(id);
+    // return cards.map((card) => new CardCollectionEntity(card));
+  }
 
   // @Get(':id')
   // async findOne(@Param('id') id: string) {

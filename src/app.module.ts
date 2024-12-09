@@ -9,6 +9,8 @@ import { CollectionsModule } from './collections/collections.module';
 import { AllExceptionsFilter } from './error/all-exceptions.filter';
 import { MeModule } from './me/me.module';
 import { UsersModule } from './users/users.module';
+import { SetsModule } from './sets/sets.module';
+import { CardsModule } from './cards/cards.module';
 
 @Module({
   imports: [
@@ -17,6 +19,8 @@ import { UsersModule } from './users/users.module';
     CardCollectionsModule,
     AuthModule,
     MeModule,
+    SetsModule,
+    CardsModule,
   ],
   controllers: [AppController],
   providers: [

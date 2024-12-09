@@ -32,13 +32,13 @@ export class CardCollectionsService {
   //   return await this.prismaService.cardCollection.findMany();
   // }
 
-  // async findOne(id: string) {
-  //   return await this.prismaService.cardCollection.findUnique({
-  //     where: {
-  //       card_collection_id: id,
-  //     },
-  //   });
-  // }
+  async findAllCards(id: string) {
+    return await this.prismaService.cardCollection.findMany({
+      where: {
+        collection_id: id,
+      },
+    });
+  }
 
   // async update( ,id: string, updateCardCollectionDto: UpdateCardCollectionDto) {
   //   return await this.prismaService.cardCollection.update({
