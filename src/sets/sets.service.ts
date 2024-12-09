@@ -12,4 +12,11 @@ export class SetsService {
     );
     return response.data;
   }
+
+  async findById(id: string) {
+    const response = await firstValueFrom(
+      this.httpService.get('https://api.pokemontcg.io/v2/sets/' + id),
+    );
+    return response.data;
+  }
 }

@@ -12,4 +12,10 @@ export class SetsController {
   findAll() {
     return this.setService.findAll();
   }
+
+  @ApiProperty()
+  @Get(':id')
+  findById(id: string) {
+    return this.setService.findById(id);
+  }
 }
