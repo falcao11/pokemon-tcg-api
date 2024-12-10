@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { ApiProperty, ApiTags } from '@nestjs/swagger';
 import { SetsService } from './sets.service';
 
@@ -15,7 +15,7 @@ export class SetsController {
 
   @ApiProperty()
   @Get(':id')
-  findById(id: string) {
+  findById(@Param('id') id: string) {
     return this.setService.findById(id);
   }
 }

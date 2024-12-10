@@ -41,8 +41,10 @@ export class CollectionsController {
 
   @ApiProperty()
   @Get(':id')
-  async findOne(@Param('id') id: string) {
-    return new CollectionEntity(await this.collectionsService.findOne(id));
+  async findOne(@GetCurrentUser() userId, @Param('id') id: string) {
+    return new CollectionEntity(
+      await this.collectionsService.findOne(id, userId.sub),
+    );
   }
 
   @ApiProperty()
