@@ -6,6 +6,18 @@ import { AuthService } from './auth.service';
 import { Public } from './decorators/public-strategy';
 import { LoginUserDto } from './dto/login-user.dto';
 
+// const storage = {
+//   storage: diskStorage({
+//     destination: './uploads/profile-images',
+//     filename: (req, file, cb) => {
+//       const filename: string =
+//         path.parse(file.originalname).name.replace(/\s/g, '') + uuidv4();
+//       const extension: string = path.parse(file.originalname).ext;
+//       cb(null, `${filename}${extension}`);
+//     },
+//   }),
+// };
+
 @Controller('')
 @ApiTags('Auth')
 export class AuthController {
@@ -35,4 +47,14 @@ export class AuthController {
     };
     return this.authService.signUp(payload);
   }
+
+  // @Public()
+  // @Post('signup/upload')
+  // @UseInterceptors(FileInterceptor('file', storage))
+  // async uploadImage(@UploadedFile() file) {
+  //   if (!file) {
+  //     throw new Error('Ficheiro upload failed');
+  //   }
+  //   return of({ image: file.filename });
+  // }
 }

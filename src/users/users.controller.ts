@@ -6,31 +6,12 @@ import {
   Param,
   Patch,
   Post,
-  UploadedFile,
-  UseInterceptors,
 } from '@nestjs/common';
-import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiProperty, ApiTags } from '@nestjs/swagger';
-import { diskStorage } from 'multer';
-import * as path from 'path';
-import { Observable, of } from 'rxjs';
-import { v4 as uuidv4 } from 'uuid';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserEntity } from './entities/user.entity';
 import { UsersService } from './users.service';
-
-const storage = {
-  storage: diskStorage({
-    destination: './uploads/profile-images',
-    filename: (req, file, cb) => {
-      const filename: string =
-        path.parse(file.originalname).name.replace(/\s/g, '') + uuidv4();
-      const extension: string = path.parse(file.originalname).ext;
-      cb(null, `${filename}${extension}`);
-    },
-  }),
-};
 
 @ApiTags('Users')
 @Controller('users')
@@ -70,12 +51,5 @@ export class UsersController {
   @Delete(':id')
   async remove(@Param('id') id: string) {
     return await this.usersService.remove(id);
-  }
-
-  @ApiProperty()
-  @Post('upload')
-  @UseInterceptors(FileInterceptor('file', storage))
-  uploadImage(@UploadedFile() file): Observable<Object> {
-    return of({ imagePath: file.path });
   }
 }

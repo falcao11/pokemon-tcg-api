@@ -13,6 +13,7 @@ export class UsersService {
         email: createUserDto.email,
         username: createUserDto.username,
         password: createUserDto.password,
+        // image: createUserDto.image,
       },
     });
   }

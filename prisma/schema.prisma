@@ -19,6 +19,7 @@ model User {
   password   String
   username   String       @unique
   colletion  Collection[] @relation("user_id_collection")
+  image      String?
   created_at DateTime     @default(now())
   updated_at DateTime     @updatedAt()
 

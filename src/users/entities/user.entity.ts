@@ -19,6 +19,9 @@ export class UserEntity {
   password: string;
 
   @ApiProperty()
+  image: string;
+
+  @ApiProperty()
   created_at: Date;
 
   @ApiProperty()
