@@ -12,4 +12,10 @@ export class CardsController {
   findAll(@Param('id') id: string) {
     return this.cardsService.findBySet(id);
   }
+
+  @ApiProperty()
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.cardsService.findById(id);
+  }
 }

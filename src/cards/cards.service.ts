@@ -14,4 +14,11 @@ export class CardsService {
     );
     return response.data;
   }
+
+  async findById(id: string) {
+    const response = await firstValueFrom(
+      this.httpService.get('https://api.pokemontcg.io/v2/cards/' + id),
+    );
+    return response.data;
+  }
 }
