@@ -8,7 +8,7 @@ export class CardsController {
   constructor(private readonly cardsService: CardsService) {}
 
   @ApiProperty()
-  @Get(':id')
+  @Get('/set/:id')
   findAll(@Param('id') id: string) {
     return this.cardsService.findBySet(id);
   }
