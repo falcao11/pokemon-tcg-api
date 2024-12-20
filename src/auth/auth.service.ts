@@ -17,21 +17,17 @@ export class AuthService {
 
   async signIn(email: string, pass: string) {
     const user = await this.usersService.findByEmail(email);
-    if (!user) {
-      throw new UnauthorizedException('Email does not exist');
-    } else {
-      if ((await bcrypt.compare(pass, user?.password)) === false) {
-        throw new UnauthorizedException('Password is incorrect');
-      }
-      const payload = {
-        sub: user.user_id,
-        email: user.email,
-        username: user.username,
-      };
-      return {
-        access_token: await this.jwtService.signAsync(payload),
-      };
+    if (!user || (await bcrypt.compare(pass, user?.password)) === false) {
+      throw new UnauthorizedException();
     }
+    const payload = {
+      sub: user.user_id,
+      email: user.email,
+      username: user.username,
+    };
+    return {
+      access_token: await this.jwtService.signAsync(payload),
+    };
   }
 
   async signUp(payload: CreateUserDto) {
