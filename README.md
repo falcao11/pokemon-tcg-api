@@ -10,10 +10,6 @@
   - [Installation](#installation)
   - [Running the Application](#running-the-application)
 - [API Documentation](#api-documentation)
-- [Database Migrations](#database-migrations)
-- [Environment Variables](#environment-variables)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Overview
 
@@ -66,7 +62,7 @@ Ensure you have the following installed:
 
 ### Running the Application
 
-1. Configure your `.env` file (see [Environment Variables](#environment-variables)).
+1. Configure your `.env` file.
 
    ```bash
    DATABASE_URL="postgresql://{USER}:{PASSWORD}@localhost:{PORT}/{DATABASE_NAME}"
@@ -112,7 +108,3 @@ Swagger is available for exploring and testing the API endpoints.
 - URL: `http://localhost:3333/api/`
 
 <img src=".github/swagger.png"></img>
-
-## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for details.
